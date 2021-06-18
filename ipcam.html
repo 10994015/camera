@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+    <style>
+        button{
+            width: 300px;
+            height: 80px;
+            font-size: 40px;
+            margin: auto;
+            outline: none;
+            background: transparent;
+            border:5px #000 solid;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+	<video id="video" width="1000" height="800" autoplay></video><br>
+<button id="snap">截圖</button><br>
+<canvas id="canvas" width="1000" height="800"></canvas>
+
+<script type="text/javascript">
+	
+var video = document.getElementById('video');
+
+if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+        video.srcObject = stream;
+        video.play();
+    });
+}
+
+
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+var video = document.getElementById('video');
+
+document.getElementById("snap").addEventListener("click", function() {
+	context.drawImage(video, 0, 0, 1000, 800);
+});
+</script>
+</body>
+</html>
